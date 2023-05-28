@@ -3,6 +3,7 @@ package me.dio.credit.application.system.dto
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Pattern
 import me.dio.credit.application.system.model.Address
 import me.dio.credit.application.system.model.Customer
 import org.hibernate.validator.constraints.br.CPF
@@ -10,9 +11,11 @@ import java.math.BigDecimal
 
 data class CustomerDto(
     @field:NotBlank(message = "Name must not be blank")
+    @field:Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+\$", message = "Name must not contain numbers or special characters")
     val firstName: String,
 
     @field:NotBlank(message = "Last Name must not be blank")
+    @field:Pattern(regexp = "^[a-zA-ZÀ-ÿ ]+\$", message = "Last name must not contain numbers or special characters")
     val lastName: String,
 
     @field:NotBlank(message = "CPF must not be blank")

@@ -36,7 +36,7 @@ class RestExceptionHandler {
     fun handlerDataAccessException(ex: DataAccessException): ResponseEntity<ExceptionDetails> {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(
             ExceptionDetails(
-                title = "Confict! Consult the documentation",
+                title = "Conflict! Consult the documentation",
                 timestamp = LocalDateTime.now(),
                 status = HttpStatus.CONFLICT.value(),
                 exception = ex.javaClass.toString(),

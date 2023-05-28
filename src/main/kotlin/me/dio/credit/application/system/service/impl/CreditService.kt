@@ -3,7 +3,6 @@ package me.dio.credit.application.system.service.impl
 import me.dio.credit.application.system.exception.BusinessException
 import me.dio.credit.application.system.model.Credit
 import me.dio.credit.application.system.repository.CreditRepository
-import me.dio.credit.application.system.repository.CustomerRepository
 import me.dio.credit.application.system.service.ICreditService
 import org.springframework.stereotype.Service
 import java.lang.IllegalArgumentException

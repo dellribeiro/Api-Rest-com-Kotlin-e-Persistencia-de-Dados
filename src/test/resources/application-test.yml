@@ -1,12 +1,15 @@
+server:
+  port: 9092
+
 spring:
   datasource:
-    url: jdbc:h2:mem:credit_application_system_db
+    url: jdbc:h2:mem:testdb
     username: dell
     password: 980515
   jpa:
     show-sql: true
     properties:
-        hibernate.format_sql: true
+      hibernate.format_sql: true
 
   h2:
     console:
@@ -15,6 +18,8 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+
+spring.flyway.enabled: false
 
 springdoc:
   swagger-ui:
