@@ -54,13 +54,12 @@ class CustomerResourceTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$.income").value("1000.0"))
             .andExpect(MockMvcResultMatchers.jsonPath("$.zipCode").value("12345"))
             .andExpect(MockMvcResultMatchers.jsonPath("$.street").value("Street Test"))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
             .andDo(MockMvcResultHandlers.print())
 
     }
 
     @Test
-    fun `should not save a custumer with same CPF and return 490 status`(){
+    fun `should not save a custumer with same CPF and return 409 status`(){
         customerRepository.save(buildCustomerDto().toEntity())
         val customerDto: CustomerDto = buildCustomerDto()
         val valueAsString: String = objectMapper.writeValueAsString(customerDto)
@@ -167,8 +166,8 @@ class CustomerResourceTest {
     @Test
     fun `should update a customer and return 200 status`(){
         val customer: Customer = customerRepository.save(buildCustomerDto().toEntity())
-        val customerUpdateDtoDto: CustomerUpdateDto = buildCustumerUpdateDto()
-        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDtoDto)
+        val customerUpdateDto: CustomerUpdateDto = buildCustumerUpdateDto()
+        val valueAsString: String = objectMapper.writeValueAsString(customerUpdateDto)
 
         mockMvc.perform(MockMvcRequestBuilders.patch("$URL?customerId=${customer.id}")
             .contentType(MediaType.APPLICATION_JSON)

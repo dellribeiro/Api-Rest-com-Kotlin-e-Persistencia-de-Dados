@@ -13,8 +13,8 @@ data class CreditDto(
     @field:NotNull(message = "Invalid Credit Value")
     val creditValue: BigDecimal,
 
+    @field:NotNull(message = "Invalid First Installment Date")
     @field:Future(message = "Invalid First Installment Date")
-    @field:Max(value = 90, message = "First Installment Date must be within 3 months")
     val dayFirstlnstallment: LocalDate,
 
     @field:NotNull(message = "Invalid Number of Installments")
@@ -24,6 +24,12 @@ data class CreditDto(
     @field:NotNull(message = "Invalid Customer Id")
     val customerId: Long
 ) {
+    init{
+        val currentDate: LocalDate = LocalDate.now()
+        val maxDate: LocalDate = currentDate.plusMonths(3)
+        if(dayFirstlnstallment.isAfter(maxDate))
+            throw IllegalArgumentException("Invalid First Installment Date")
+    }
     fun toEntity(): Credit = Credit(
         creditValue = this.creditValue,
         dayFirstlnstallment = this.dayFirstlnstallment,

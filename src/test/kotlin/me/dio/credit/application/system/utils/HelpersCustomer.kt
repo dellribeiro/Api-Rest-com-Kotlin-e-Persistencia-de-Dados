@@ -1,5 +1,6 @@
 package me.dio.credit.application.system.utils
 
+import me.dio.credit.application.system.dto.CreditDto
 import me.dio.credit.application.system.dto.CustomerDto
 import me.dio.credit.application.system.dto.CustomerUpdateDto
 import me.dio.credit.application.system.enumeration.Status
@@ -72,7 +73,7 @@ internal fun buildCredit(
     creditCode: UUID = UUID.randomUUID(),
     creditValue: BigDecimal = BigDecimal.valueOf(500.0),
     dayFirstlnstallment: LocalDate = LocalDate.now().plusMonths(3),
-    numberOfInstallments: Int = 5,
+    numberOfInstallments: Int = 4,
     status: Status = Status.IN_PROGRESS,
     customer: Customer = buildCustomer(),
     id: Long = 1L
@@ -87,3 +88,15 @@ internal fun buildCredit(
         id = id
     )
 }
+
+internal fun buildCreditDto(
+    creditValue: BigDecimal = BigDecimal.valueOf(500.0),
+    dayFirstlnstallment: LocalDate = LocalDate.now().plusMonths(6),
+    numberOfInstallments: Int = 4,
+    customerId: Long = 1
+): CreditDto = CreditDto(
+    creditValue = creditValue,
+    dayFirstlnstallment = dayFirstlnstallment,
+    numberOfInstallments = numberOfInstallments,
+    customerId = customerId
+)
